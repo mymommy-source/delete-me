@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Soft Feminine Luxury — design tokens
+   rose        #A77B83  accents, borders, icons, large text
+   rose-deep   #8F636C  same hue, darkened so white text on it passes WCAG AA
+--------------------------------------------------------------------------- */
+@theme {
+  --color-ivory: #fff9f5;
+  --color-blush: #f8e9e9;
+  --color-rose: #a77b83;
+  --color-rose-deep: #8f636c;
+  --color-beige: #e7d3c5;
+  --color-cocoa: #493b3b;
+  --color-cocoa-soft: #6f5f5d;
+
+  --font-display: 'Playfair Display', 'IBM Plex Sans Arabic', Georgia, serif;
+  --font-sans: 'Inter', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(73 59 59 / 0.04), 0 12px 32px -12px rgb(73 59 59 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(73 59 59 / 0.04), 0 24px 48px -20px rgb(73 59 59 / 0.22);
+
+  --radius-arch: 999px 999px 1.75rem 1.75rem;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-cocoa antialiased;
+    font-feature-settings: 'kern', 'liga';
+  }
+
+  html[dir='rtl'] body {
+    font-family: var(--font-arabic);
+    line-height: 1.75;
+  }
+
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-cocoa);
+  }
+
+  /* Keep anchor targets clear of the sticky navigation. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  dialog {
+    color: inherit;
+  }
+
+  dialog::backdrop {
+    background: rgb(73 59 59 / 0.55);
+    backdrop-filter: blur(4px);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .heading-display {
+    @apply font-display font-normal text-cocoa;
+    letter-spacing: -0.01em;
+  }
+  html[dir='rtl'] .heading-display {
+    font-family: var(--font-arabic);
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+
+  .btn,
+  .btn-primary,
+  .btn-outline,
+  .btn-ghost {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-medium whitespace-nowrap transition-all duration-300 ease-(--ease-soft) select-none disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-rose-deep text-white shadow-soft hover:-translate-y-px hover:bg-cocoa hover:shadow-lift;
+  }
+  .btn-outline {
+    @apply border border-rose/50 bg-transparent text-cocoa hover:border-rose hover:bg-blush/70;
+  }
+  .btn-ghost {
+    @apply px-4 text-cocoa-soft hover:bg-blush/70 hover:text-cocoa;
+  }
+  .btn-sm {
+    @apply min-h-10 px-5 text-[0.8125rem];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.6875rem] font-medium tracking-wide;
+  }
+
+}
+
+/* ---------------------------------------------------------------------------
+   Motion — gentle and optional
+--------------------------------------------------------------------------- */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal-in {
+  transition:
+    opacity 0.9s var(--ease-soft),
+    transform 0.9s var(--ease-soft);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+.dialog-enter {
+  animation: dialog-in 0.4s var(--ease-soft);
+}
+.dialog-leave {
+  animation: dialog-out 0.25s ease-in forwards;
+}
+.fade-enter {
+  animation: fade-in 0.35s var(--ease-soft);
+}
+.fade-leave {
+  animation: fade-out 0.2s ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+}

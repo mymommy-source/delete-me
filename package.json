@@ -1,0 +1,10 @@
+{
+  "name": "feminine-boutique",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n api,web -c magenta,cyan \"npm --prefix backend run start:dev\" \"npm --prefix frontend start\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
