@@ -6,16 +6,17 @@ import { SeoService } from '../../core/seo/seo.service';
 import { buildXOrderUrl, fillTemplate } from '../../core/utils/order-link';
 import { plainSar } from '../../core/utils/price';
 import { PRODUCTS, SETTINGS } from '../../data/shop-data';
+import { IconComponent } from '../../shared/ui/icon.component';
 import { CollectionSectionComponent } from '../products/collection-section.component';
 import { TermsGateComponent } from './components/terms-gate.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [NgOptimizedImage, CollectionSectionComponent, TermsGateComponent],
+  imports: [NgOptimizedImage, CollectionSectionComponent, TermsGateComponent, IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <main class="min-h-svh bg-ivory" [attr.inert]="consent.accepted() ? null : ''" [attr.aria-hidden]="consent.accepted() ? null : 'true'">
-      <header class="flex justify-center bg-blush pt-12 pb-10 sm:pt-16 sm:pb-12">
+      <header class="flex flex-col items-center gap-5 bg-blush pt-12 pb-5 sm:pt-16 sm:pb-6">
         <img
           [ngSrc]="settings.logoUrl"
           alt=""
@@ -24,6 +25,15 @@ import { TermsGateComponent } from './components/terms-gate.component';
           priority
           class="size-36 rounded-full border-4 border-ivory object-cover shadow-lift sm:size-44"
         />
+        <a
+          [href]="'https://x.com/' + settings.profileXUsername"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid size-10 place-items-center rounded-full bg-cocoa text-ivory shadow-soft transition hover:-translate-y-0.5 hover:bg-rose-deep"
+          [attr.aria-label]="'X: @' + settings.profileXUsername"
+        >
+          <app-icon name="x" class="size-4" />
+        </a>
       </header>
       <app-collection-section [products]="products" [orderUrl]="orderUrl" />
     </main>

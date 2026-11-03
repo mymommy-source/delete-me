@@ -16,6 +16,8 @@ export interface Product {
 }
 
 export interface ShopSettings {
+  /** X account linked under the logo, without the @. */
+  profileXUsername: string;
   /** X (Twitter) username that receives orders by DM, without the @. */
   xUsername: string;
   /** Numeric X account ID; opens the DM directly with the order message prefilled. */

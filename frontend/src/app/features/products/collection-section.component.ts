@@ -11,7 +11,7 @@ import { ProductDialogComponent } from './product-dialog.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block' },
   template: `
-    <section id="collection" [attr.aria-label]="i18n.t('collection.title')" class="py-10 sm:py-14">
+    <section id="collection" [attr.aria-label]="i18n.t('collection.title')" class="pt-6 pb-10 sm:pt-8 sm:pb-14">
       <div class="container-page">
         @if (products().length) {
           <ul class="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-7 sm:gap-y-14 lg:grid-cols-3">

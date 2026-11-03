@@ -7,6 +7,7 @@ import type { Product, ShopSettings } from '../core/models';
  * - set isAvailable: false to hide a product
  */
 export const SETTINGS: ShopSettings = {
+  profileXUsername: 'RSR_121',
   xUsername: 'Paihs',
   xUserId: '1350830939358842881',
   orderMessage: 'مرحباً، أرغب في طلب {product} بسعر {price} ريال.',
@@ -41,8 +42,8 @@ export const PRODUCTS: Product[] = [
       { url: '/products/pink-crew-3.jpg', alt: 'Pink socks with workout gear' },
     ],
     isAvailable: true,
-    isFeatured: false,
-    isNewArrival: true,
+    isFeatured: true,
+    isNewArrival: false,
   },
   {
     id: 'red-bow',
@@ -55,7 +56,7 @@ export const PRODUCTS: Product[] = [
     ],
     isAvailable: true,
     isFeatured: true,
-    isNewArrival: true,
+    isNewArrival: false,
   },
   {
     id: 'telegram-channel',
@@ -66,7 +67,7 @@ export const PRODUCTS: Product[] = [
       { url: '/products/telegram-channel.jpg', alt: 'Private Telegram channel' },
     ],
     isAvailable: true,
-    isFeatured: false,
+    isFeatured: true,
     isNewArrival: false,
   },
 ];
