@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "dev": "ng serve",
     "build": "ng build",
-    "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
+    "start": "node dist/frontend/server/server.mjs"
   },
   "private": true,
   "packageManager": "npm@11.6.4",
@@ -31,5 +31,8 @@
     "postcss": "^8.5.32",
     "tailwindcss": "^4.3.3",
     "typescript": "~5.9.2"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

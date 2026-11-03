@@ -2,7 +2,11 @@
   "name": "socks-shop",
   "private": true,
   "scripts": {
-    "dev": "npm --prefix frontend start",
-    "build": "npm --prefix frontend run build"
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend ci --include=dev && npm --prefix frontend run build",
+    "start": "npm --prefix frontend start"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
