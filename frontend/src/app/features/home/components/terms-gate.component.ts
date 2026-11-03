@@ -22,6 +22,20 @@ import { I18nService } from '../../../core/i18n/i18n.service';
           {{ i18n.t('terms.statement') }}
         </p>
 
+        <figure class="relative mx-auto mt-8 w-full max-w-sm">
+          <div aria-hidden="true" class="absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-[1.75rem] border border-rose/40 rtl:-translate-x-2.5"></div>
+          <div class="relative overflow-hidden rounded-[1.75rem] border-4 border-blush bg-blush shadow-lift">
+            <img
+              src="/gate.jpg"
+              alt=""
+              width="900"
+              height="1021"
+              decoding="async"
+              class="block max-h-[42svh] w-full object-cover object-center"
+            />
+          </div>
+        </figure>
+
         @if (declined()) {
           <p class="mt-6 rounded-2xl bg-blush px-4 py-3 text-base text-rose-deep" role="alert">{{ i18n.t('terms.declined') }}</p>
         }

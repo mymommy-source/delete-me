@@ -24,7 +24,7 @@ import { OrnamentComponent } from '../../shared/ui/ornament.component';
     <dialog
       #dialog
       class="m-auto max-h-[100svh] w-full max-w-none overflow-hidden bg-transparent p-0 sm:max-h-[92svh] sm:max-w-4xl sm:px-4"
-      [attr.aria-labelledby]="'dialog-title-' + product()._id"
+      [attr.aria-labelledby]="'dialog-title-' + product().id"
       (cancel)="$event.preventDefault(); close()"
       (click)="onBackdrop($event)"
       animate.enter="dialog-enter"
@@ -84,8 +84,8 @@ import { OrnamentComponent } from '../../shared/ui/ornament.component';
               <span class="chip bg-rose-deep text-white"><app-icon name="sparkle" class="size-3" />{{ i18n.t('collection.featuredBadge') }}</span>
             }
           </div>
-          <h2 [id]="'dialog-title-' + product()._id" class="heading-display mt-5 text-3xl leading-tight sm:text-4xl">{{ name() }}</h2>
-          <p class="mt-4 text-2xl text-rose-deep tabular-nums">{{ product().price | sar: i18n.lang() }}</p>
+          <h2 [id]="'dialog-title-' + product().id" class="heading-display mt-5 text-3xl leading-tight sm:text-4xl">{{ name() }}</h2>
+          <p class="mt-4 text-2xl text-rose-deep tabular-nums">{{ product().price | sar }}</p>
 
           <p class="mt-4 flex items-center gap-2 text-sm">
             <span class="size-2 rounded-full" [class]="product().isAvailable ? 'bg-emerald-600/70' : 'bg-rose'"></span>
@@ -123,8 +123,8 @@ export class ProductDialogComponent {
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
   protected readonly active = signal(0);
   protected readonly activeImage = computed(() => this.product().images[this.active()] ?? null);
-  protected readonly name = computed(() => this.i18n.pick(this.product(), 'name'));
-  protected readonly description = computed(() => this.i18n.pick(this.product(), 'description'));
+  protected readonly name = computed(() => this.product().name);
+  protected readonly description = computed(() => this.product().description);
   private returnFocus: HTMLElement | null = null;
 
   constructor() {

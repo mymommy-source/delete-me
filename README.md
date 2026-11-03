@@ -1,6 +1,6 @@
 # Socks Shop
 
-A small read-only shop: Angular (SSR) frontend + NestJS API + MongoDB Atlas.
+A small Angular (SSR) website. No database: everything lives in the project.
 Orders are placed by direct message on X (Twitter).
 
 ## Run locally
@@ -8,26 +8,23 @@ Orders are placed by direct message on X (Twitter).
 Requires Node.js 22.
 
 ```bash
-# 1. Settings: copy the example and put your MongoDB Atlas link in it
-cp backend/.env.example backend/.env
-
-# 2. Install dependencies (first time only)
-cd backend && npm install
-cd ../frontend && npm install
-cd .. && npm install
-
-# 3. Start backend + frontend together
+npm --prefix frontend install   # first time only
 npm run dev
 ```
 
 Open http://localhost:4200
 
-## Editing products
+## Editing the shop
 
-There is no admin dashboard. Products and settings live in MongoDB Atlas
-(Browse Collections):
+- Products and settings: `frontend/src/app/data/shop-data.ts` (`name`, `description`, `price` in SAR, `isAvailable: false` hides a product)
+- Interface texts: `frontend/src/app/core/i18n/ar.ts`
+- Product photos: `frontend/public/products/` (referenced as `/products/<file>.jpg`)
+- Logo: `frontend/public/logo.jpg`
 
-- `socks_products`: name, description, price (in halalas: 50000 = 500 SAR), images, `isAvailable`
-- `socks_site_settings`: X username/ID for orders, order message, logo, page title
+## Production
 
-Product photos go in `frontend/public/products/` and are referenced as `/products/<file>.jpg`.
+```bash
+cd frontend
+npm run build
+node dist/frontend/server/server.mjs   # serves on PORT (default 4000)
+```

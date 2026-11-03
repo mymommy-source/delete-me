@@ -1,13 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import type { Language } from '../models';
 
 export interface SeoData {
   title: string;
   description: string;
   image?: string | null;
-  lang: Language;
   siteName: string;
 }
 
@@ -17,7 +15,7 @@ export class SeoService {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
 
-  update({ title, description, image, lang, siteName }: SeoData): void {
+  update({ title, description, image, siteName }: SeoData): void {
     const url = this.canonicalUrl();
     this.title.setTitle(title);
 
@@ -27,7 +25,7 @@ export class SeoService {
       'og:title': title,
       'og:description': description,
       'og:site_name': siteName,
-      'og:locale': lang === 'ar' ? 'ar_SA' : 'en_US',
+      'og:locale': 'ar_SA',
       'og:url': url,
       'twitter:card': image ? 'summary_large_image' : 'summary',
       'twitter:title': title,

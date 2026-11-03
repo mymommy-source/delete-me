@@ -15,7 +15,7 @@ import { ProductDialogComponent } from './product-dialog.component';
       <div class="container-page">
         @if (products().length) {
           <ul class="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-7 sm:gap-y-14 lg:grid-cols-3">
-            @for (product of products(); track product._id; let i = $index) {
+            @for (product of products(); track product.id; let i = $index) {
               <li appReveal [revealDelay]="(i % 3) * 90">
                 <app-product-card
                   [product]="product"

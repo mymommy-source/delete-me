@@ -3,11 +3,6 @@ node_modules/
 dist/
 .angular/
 
-# Secrets (database password, JWT secret) — only .env.example is committed
-.env
-.env.*
-!.env.example
-
 # Logs and OS/editor files
 *.log
 .DS_Store

@@ -1,12 +1,9 @@
-import type { Dictionary } from './en';
-
-export const ar: Dictionary = {
+export const ar = {
   nav: {
     home: 'الرئيسية',
   },
   collection: {
     title: 'مجموعة الشرابات',
-    subtitle: 'أزواج ناعمة ومرحة مختارة بعناية — راحة صغيرة لكل يوم.',
     empty: 'لا شيء هنا بعد — قطع جديدة في الطريق.',
     newArrival: 'وصل حديثاً',
     featuredBadge: 'مميّزة',
@@ -26,7 +23,7 @@ export const ar: Dictionary = {
     next: 'الصورة التالية',
   },
   terms: {
-    statement: 'أقرّ إني كلب خاضع بشكل تام تحت رجول الكوين ومجرد ممسحة لها، وأقرّ بأن عمري فوق 18 سنة',
+    statement: 'أقرّ إني كلب خاضع بشكل تام تحت رجول الكوين ومجرد ممسحة لها',
     accept: 'نعم',
     decline: 'لا',
     declined: 'دز أمها.',

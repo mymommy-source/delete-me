@@ -10,7 +10,7 @@ import { IconComponent } from '../../shared/ui/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'block' },
   template: `
-    <article class="group flex h-full flex-col" [attr.aria-labelledby]="'product-' + product()._id">
+    <article class="group flex h-full flex-col" [attr.aria-labelledby]="'product-' + product().id">
       <div
         class="relative aspect-[3/5] w-full overflow-hidden rounded-[1.25rem] bg-beige/50 shadow-soft transition-shadow duration-500 hover:shadow-lift sm:rounded-[1.75rem]"
         (touchstart)="touchStart($event)"
@@ -83,11 +83,11 @@ import { IconComponent } from '../../shared/ui/icon.component';
 
       <div class="flex flex-1 flex-col px-1 pt-4 sm:pt-5">
         <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-          <h3 [id]="'product-' + product()._id" class="font-display text-base leading-snug text-cocoa sm:text-[1.3rem] rtl:font-arabic rtl:font-medium sm:rtl:text-lg">
+          <h3 [id]="'product-' + product().id" class="font-display text-base leading-snug text-cocoa sm:text-[1.3rem] rtl:font-arabic rtl:font-medium sm:rtl:text-lg">
             {{ name() }}
           </h3>
           <p class="shrink-0 text-sm font-medium text-rose-deep tabular-nums sm:pt-1 sm:text-[0.9375rem]">
-            {{ product().price | sar: i18n.lang() }}
+            {{ product().price | sar }}
           </p>
         </div>
         @if (description()) {
@@ -121,8 +121,8 @@ export class ProductCardComponent {
   readonly orderUrl = input<string | null>(null);
   readonly viewDetails = output<void>();
 
-  protected readonly name = computed(() => this.i18n.pick(this.product(), 'name'));
-  protected readonly description = computed(() => this.i18n.pick(this.product(), 'description'));
+  protected readonly name = computed(() => this.product().name);
+  protected readonly description = computed(() => this.product().description);
   protected readonly count = computed(() => this.product().images.length);
   /** Index of the photo shown in the card; resets when the product changes. */
   protected readonly active = linkedSignal({ source: this.product, computation: () => 0 });
@@ -143,7 +143,7 @@ export class ProductCardComponent {
     const dx = endX - this.touchX;
     this.touchX = null;
     if (Math.abs(dx) < 40) return;
-    // Swiping toward the reading direction moves forward.
-    this.step((dx < 0) !== this.i18n.isRtl() ? 1 : -1);
+    // Right-to-left layout: swiping right moves to the next photo.
+    this.step(dx < 0 ? -1 : 1);
   }
 }
