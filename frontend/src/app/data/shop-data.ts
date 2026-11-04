@@ -64,7 +64,7 @@ export const PRODUCTS: Product[] = [
     description: 'محتوى خاص (+18). عرض رجول تفال ديرتي بول الدخول بـ 500 ريال.',
     price: 500,
     images: [
-      { url: '/products/telegram-channel.jpg', alt: 'Private Telegram channel' },
+      { url: '/products/telegram-channel.png', alt: 'Private Telegram channel' },
     ],
     isAvailable: true,
     isFeatured: true,
